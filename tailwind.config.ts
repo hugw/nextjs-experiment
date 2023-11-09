@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss'
+import { fontFamily } from 'tailwindcss/defaultTheme'
 
 const config: Config = {
   content: [
@@ -6,7 +7,11 @@ const config: Config = {
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
-  theme: {},
-  plugins: [],
+  extend: {
+    fontFamily: {
+      sans: ['var(--font-inter)', ...fontFamily.sans],
+    },
+  },
+  plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
 }
 export default config
