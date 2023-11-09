@@ -1,11 +1,13 @@
 import { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 
+import { APP_DESC, APP_TITLE } from '@/config'
+
 import '../styles/globals.css'
 
 export const metadata: Metadata = {
-  title: 'App Title',
-  description: 'App Description',
+  title: APP_TITLE,
+  description: APP_DESC,
 }
 
 const inter = Inter({
