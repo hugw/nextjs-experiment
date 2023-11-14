@@ -5,3 +5,5 @@ export const ROUTES = {
   // Root
   root: '/',
 }
+
+export const API_URL = ''

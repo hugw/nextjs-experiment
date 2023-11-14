@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 
+import { App } from '@/components/App'
 import { APP_DESC, APP_TITLE } from '@/config'
 
 import '../styles/globals.css'
@@ -22,7 +23,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} font-sans`}>{children}</body>
+      <body className={`${inter.variable} font-sans`}>
+        <App>{children}</App>
+      </body>
     </html>
   )
 }
