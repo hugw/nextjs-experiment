@@ -18,6 +18,7 @@ export const Providers = ({
   children,
 }: React.PropsWithChildren<ProviderProps>) => {
   const [queryClient] = useState(() => new QueryClient(queryOptions))
+
   return (
     <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
   )
