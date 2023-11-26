@@ -9,7 +9,14 @@ export type User = {
   company: string
 }
 
-type UsersResponse = User[]
+type UsersResponse = {
+  results: User[]
+  pagination: {
+    perPage: number
+    page: number
+    totalPages: number
+  }
+}
 
 export const getUsers = (pageNumber: number) =>
   query<UsersResponse>({

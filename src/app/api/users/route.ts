@@ -25,5 +25,15 @@ export const POST = async (req: NextRequest) => {
 
   const results = users.slice(startIndex, endIndex)
 
-  return NextResponse.json(results, { status: 200 })
+  return NextResponse.json(
+    {
+      results,
+      pagination: {
+        page,
+        totalPages: NUMBER_OF_PAGES,
+        perPage: DEFAULT_PER_PAGE,
+      },
+    },
+    { status: 200 },
+  )
 }

@@ -13,6 +13,10 @@ type UsersProps = {
 export const Users = async ({ pageNumber = 1 }: UsersProps) => {
   const { data, error } = await getUsers(pageNumber)
 
+  if (!data) return <div>Loading...</div>
+
+  const { results, pagination } = data
+
   return (
     <div className="mx-auto w-1/2">
       <table>
@@ -24,14 +28,18 @@ export const Users = async ({ pageNumber = 1 }: UsersProps) => {
             <th>Company</th>
           </tr>
         </thead>
-        <tbody>{data?.map((user) => <Row key={user.id} user={user} />)}</tbody>
+        <tbody>
+          {results?.map((user) => <Row key={user.id} user={user} />)}
+        </tbody>
       </table>
 
-      {pageNumber > 1 && (
-        <Link href={`${ROUTES.users}?page=${+pageNumber - 1}`}>Previous</Link>
+      {pagination.page > 1 && (
+        <Link href={`${ROUTES.users}?page=${pagination.page - 1}`}>
+          Previous
+        </Link>
       )}
 
-      {!!data?.length && (
+      {pagination.page < pagination.totalPages && (
         <Link href={`${ROUTES.users}?page=${+pageNumber + 1}`}>Next</Link>
       )}
     </div>
