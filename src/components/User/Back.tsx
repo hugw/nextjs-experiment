@@ -6,5 +6,12 @@ import React from 'react'
 export const Back = () => {
   const router = useRouter()
 
-  return <button onClick={() => router.back()}>Back to all users</button>
+  return (
+    <button
+      className="text-emerald-600 font-bold"
+      onClick={() => router.back()}
+    >
+      Back to all users
+    </button>
+  )
 }

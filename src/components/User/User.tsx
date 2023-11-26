@@ -12,7 +12,7 @@ export const User = ({ userId }: UserProps) => {
   const user = users[userId]
 
   return (
-    <div className="mx-auto w-1/2">
+    <div className="mx-auto w-1/2 mt-5">
       <Back />
 
       <h4 className="mt-3">
