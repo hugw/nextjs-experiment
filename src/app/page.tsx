@@ -1,5 +1,7 @@
-import { Home } from '@/components/Home/Home'
+import { redirect } from 'next/navigation'
+
+import { ROUTES } from '@/config'
 
 export default async function HomePage() {
-  return <Home />
+  redirect(ROUTES.users)
 }

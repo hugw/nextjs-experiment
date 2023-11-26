@@ -1,8 +1,8 @@
-import Link from 'next/link'
 import React from 'react'
 
-import { ROUTES } from '@/config'
 import { users } from '@/db/users'
+
+import { Back } from './Back'
 
 type UserProps = {
   userId: string
@@ -12,9 +12,10 @@ export const User = ({ userId }: UserProps) => {
   const user = users[userId]
 
   return (
-    <div>
-      <Link href={ROUTES.root}>Back to all users</Link>
-      <h4>
+    <div className="mx-auto w-1/2">
+      <Back />
+
+      <h4 className="mt-3">
         {user.firstName} {user.lastName}
       </h4>
       <div>{user.email}</div>

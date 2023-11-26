@@ -11,8 +11,8 @@ export type User = {
 
 type UsersResponse = User[]
 
-export const getUsers = (pageNumber: number = 0) =>
+export const getUsers = (pageNumber: number) =>
   query<UsersResponse>({
-    method: 'GET',
+    method: 'POST',
     path: `/api/users?page=${pageNumber}`,
   })

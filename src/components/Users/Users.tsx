@@ -6,11 +6,11 @@ import { getUsers } from '@/queries/users'
 
 import { Row } from '../Grid/Row'
 
-type HomeProps = {
+type UsersProps = {
   pageNumber: number
 }
 
-export const Home = async ({ pageNumber = 0 }: HomeProps) => {
+export const Users = async ({ pageNumber = 1 }: UsersProps) => {
   const { data, error } = await getUsers(pageNumber)
 
   return (
@@ -27,10 +27,13 @@ export const Home = async ({ pageNumber = 0 }: HomeProps) => {
         <tbody>{data?.map((user) => <Row key={user.id} user={user} />)}</tbody>
       </table>
 
-      {!!pageNumber && (
-        <Link href={`${ROUTES.root}${+pageNumber - 1}`}>Previous</Link>
+      {pageNumber > 1 && (
+        <Link href={`${ROUTES.users}?page=${+pageNumber - 1}`}>Previous</Link>
       )}
-      {<Link href={`${ROUTES.root}${+pageNumber + 1}`}>Next</Link>}
+
+      {!!data?.length && (
+        <Link href={`${ROUTES.users}?page=${+pageNumber + 1}`}>Next</Link>
+      )}
     </div>
   )
 }

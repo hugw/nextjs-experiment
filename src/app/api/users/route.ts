@@ -6,8 +6,8 @@ const DEFAULT_PER_PAGE = 10
 const TOTAL_USERS = users.length
 const NUMBER_OF_PAGES = Math.ceil(TOTAL_USERS / DEFAULT_PER_PAGE)
 
-export const GET = async (req: NextRequest) => {
-  const searchParams = req.nextUrl.searchParams
+export const POST = async (req: NextRequest) => {
+  const { searchParams } = new URL(req.url)
   const page = searchParams.get('page')
 
   const currentPageIndex = page ? +page - 1 : 0
