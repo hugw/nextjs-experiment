@@ -10,13 +10,20 @@ export const GET = async (req: NextRequest) => {
   const searchParams = req.nextUrl.searchParams
   const page = searchParams.get('page')
 
-  const perPage = page ? +page : 0
+  const currentPageIndex = page ? +page - 1 : 0
 
-  const currentPageIndex = +perPage! * DEFAULT_PER_PAGE
-  const results = users.slice(
-    currentPageIndex,
-    currentPageIndex + DEFAULT_PER_PAGE,
-  )
+  if (
+    !Number.isInteger(currentPageIndex) ||
+    currentPageIndex < 0 ||
+    currentPageIndex > NUMBER_OF_PAGES - 1
+  ) {
+    return NextResponse.json({ message: 'Invalid page' }, { status: 400 })
+  }
+
+  const startIndex = currentPageIndex * DEFAULT_PER_PAGE
+  const endIndex = startIndex + DEFAULT_PER_PAGE
+
+  const results = users.slice(startIndex, endIndex)
 
   return NextResponse.json(results, { status: 200 })
 }
