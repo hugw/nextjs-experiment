@@ -1,11 +1,10 @@
-import Link from 'next/link'
 import React from 'react'
 
-import { ROUTES } from '@/config'
 import { getUsers } from '@/queries/users'
 
 import { Row } from '../Grid/Row'
 import { Th } from '../Grid/Th'
+import { Navigate } from './Navigate'
 
 type UsersProps = {
   pageNumber: number
@@ -37,21 +36,11 @@ export const Users = async ({ pageNumber = 1 }: UsersProps) => {
 
       <div className="mt-5 flex justify-end gap-2">
         {pagination.page > 1 && (
-          <Link
-            className="text-emerald-600 font-bold"
-            href={`${ROUTES.users}?page=${pagination.page - 1}`}
-          >
-            Previous
-          </Link>
+          <Navigate page={+pagination.page - 1}>Previous</Navigate>
         )}
 
         {pagination.page < pagination.totalPages && (
-          <Link
-            className="text-emerald-600 font-bold"
-            href={`${ROUTES.users}?page=${+pageNumber + 1}`}
-          >
-            Next
-          </Link>
+          <Navigate page={+pagination.page + 1}>Next</Navigate>
         )}
       </div>
     </div>

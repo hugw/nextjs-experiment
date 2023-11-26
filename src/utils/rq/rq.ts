@@ -45,7 +45,7 @@ export const rq = async <TResponse, TVariables = void>(
         ...headers,
         ...(data ? { 'Content-Type': 'application/json' } : undefined),
       },
-      next,
+      cache: 'no-store',
     })
 
     if (res.ok) {
